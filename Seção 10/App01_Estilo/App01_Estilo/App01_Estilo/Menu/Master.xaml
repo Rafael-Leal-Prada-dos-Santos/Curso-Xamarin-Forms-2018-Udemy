@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pagina="clr-namespace:App01_Estilo.Pagina" 
+             x:Class="App01_Estilo.Menu.Master">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Menu">
+            <ScrollView>
+                <StackLayout>
+                    <Button Text="Implicit Style" Clicked="IrPaginaImplicitStyle"/>
+                    <Button Text="Explicit Style" Clicked="IrPaginaExplicitStyle"/>
+                    <Button Text="Global Style" Clicked="IrPaginaGlobalStyle"/>
+                    <Button Text="Inerhit Style" Clicked="IrPaginaInerhitStyle"/>
+                    <Button Text="Dynamic Style" Clicked="IrPaginaDynamicStyle"/>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <pagina:PaginaInicio/>
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>
