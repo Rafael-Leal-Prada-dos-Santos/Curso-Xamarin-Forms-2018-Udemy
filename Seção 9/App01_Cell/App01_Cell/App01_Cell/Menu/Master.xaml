@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pagina="clr-namespace:App01_Cell.Pagina"
+             x:Class="App01_Cell.Menu.Master">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Menu">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Células"/>
+                    <Button Text="TextCell" Clicked="IrPaginaTextCell"/>
+                    <Button Text="ImageCell" Clicked="IrPaginaImageCell"/>
+                    <Button Text="EntryCell" Clicked="IrPaginaEntryCell"/>
+                    <Button Text="SwitchCell" Clicked="IrPaginaSwitchCell"/>
+                    <Button Text="ViewCell" Clicked="IrPaginaViewCell"/>
+                    
+                    <Label Text="Componentes"/>
+                    <Button Text="ListView" Clicked="IrPaginaListView"/>
+                    <Button Text="ListView Button" Clicked="IrPaginaListViewButton"/>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <pagina:PaginaTextCell/>
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>
