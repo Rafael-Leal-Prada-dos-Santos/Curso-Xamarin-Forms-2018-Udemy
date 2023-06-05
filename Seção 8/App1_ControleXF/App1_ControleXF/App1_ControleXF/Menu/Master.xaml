@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_ControleXF.Menu.Master"
+             xmlns:pagina="clr-namespace:App1_ControleXF">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Menu">
+            <ScrollView>
+                <StackLayout>
+                    <Button Text="Activity Indicator" Clicked="IrPaginaActivityIndicator"/>
+                    <Button Text="Progress Bar" Clicked="IrPaginaProgressBar"/>
+                    <Button Text="BoxView" Clicked="IrPaginaBoxView"/>
+                    <Button Text="Label" Clicked="IrPaginaLabel"/>
+                    <Button Text="Button" Clicked="IrPaginaButton"/>
+                    <Button Text="Entry/Editor" Clicked="IrPaginaEntryEditor"/>
+                    <Button Text="DatePicker" Clicked="IrPaginaDatePicker"/>
+                    <Button Text="TimePicker" Clicked="IrPaginaTimePicker"/>
+                    <Button Text="Picker" Clicked="IrPaginaPicker"/>
+                    <Button Text="SearchBar" Clicked="IrPaginaSearchBar"/>
+                    <Button Text="Slider/Stepper" Clicked="IrPaginaSliderStepper"/>
+                    <Button Text="Switch" Clicked="IrPaginaSwitch"/>
+                    <Button Text="Image" Clicked="IrPaginaImage"/>
+                    <Button Text="ListView" Clicked="IrPaginaListView"/>
+                    <Button Text="TableView" Clicked="IrPaginaTableView"/>
+                    <Button Text="WebView" Clicked="IrPaginaWebView"/>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <pagina:PaginaInicio/>
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

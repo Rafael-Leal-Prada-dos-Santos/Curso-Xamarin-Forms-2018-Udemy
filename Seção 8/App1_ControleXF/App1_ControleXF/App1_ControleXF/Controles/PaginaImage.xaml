@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1_ControleXF.Controles.PaginaImage">
+    <ContentPage.Content>
+        <StackLayout x:Name="container">
+            <!--Source="Resource, Local, Internet"-->
+            <Image
+                Source="https://st3.depositphotos.com/6002972/18211/v/600/depositphotos_182111902-stock-illustration-modern-pigeon-logo-red-flaming.jpg"
+                Aspect="Fill"
+                IsOpaque="True"
+                x:Name="ImageOne"
+                />
+            
+            <!--Fill - Preencher o máximo da tela e perdendo proporções-->
+            <!--AspectFill - Aumentar a imagem mantendo proporções-->
+            <!--AspectFit - Apresenta a imagem do taamanho que ela é independente do tamanho dos pixels -->
+
+            <!--ISOpaque - imagem não tem fundo -> ganha performance -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
