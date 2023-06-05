@@ -1,1 +1,0 @@
-C:\Cursos\Udemy\Xamarin_forms_2018 (1)\Xamarin_forms_2018\Secao12\App1_Mimica\App1_Mimica.UWP\App1_Mimica.UWP.csproj;x64
