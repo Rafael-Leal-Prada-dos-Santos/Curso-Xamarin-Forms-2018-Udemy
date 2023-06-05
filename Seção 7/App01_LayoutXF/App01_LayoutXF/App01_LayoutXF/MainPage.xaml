@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_LayoutXF.MainPage">
+
+    <StackLayout>
+        <Button Text="Stack" Clicked="IrPaginaStack_Clicado"></Button>
+        <Button Text="Grid" Clicked="IrPaginaGrid_Clicado"></Button>
+        <Button Text="Absolute" Clicked="IrPaginaAbsolute_Clicado"></Button>
+        <Button Text="Relative" Clicked="IrPaginaRelative_Clicado"></Button>
+        <Button Text="Scroll" Clicked="IrPaginaScroll_Clicado"></Button>
+    </StackLayout>
+
+</ContentPage>
