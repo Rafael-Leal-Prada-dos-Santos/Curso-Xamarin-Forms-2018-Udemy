@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App01_Estilo.Pagina.PaginaDynamicStyle">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="lblColor">red</Color>
+            <Style x:Key="lbl" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Black"/>
+            </Style>
+            <Style x:Key="newLbl" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            
+        </ResourceDictionary>
+        <!--Se usar static resource e por algum motivo essa prop for alterada não irá impactar no app-->
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!" TextColor="{StaticResource lblColor}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Welcome to Xamarin.Forms!" TextColor="{DynamicResource lblColor}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Label Estática" Style="{StaticResource lbl}"/>
+            <Label Text="Label Dinâmica" Style="{DynamicResource lbl }"/>
+            
+            <Button Text="Mudar a cor" Clicked="MudarCor_Clicado"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
