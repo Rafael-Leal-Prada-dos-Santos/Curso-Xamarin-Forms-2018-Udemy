@@ -15,5 +15,7 @@ namespace App1_Mimica.Model
         public Grupo Grupo1 { get; set; }
 
         public Grupo Grupo2 { get; set; }
+
+        public int NivelNumerico { get; set; }
     }
 }

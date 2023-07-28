@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodel="clr-namespace:App1_Mimica.ViewModel"
-             x:Class="App1_Mimica.View.Inicio"
-             x:DataType="viewmodel:InicioViewModel">
+<ContentPage
+    x:Class="App1_Mimica.View.Inicio"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:App1_Mimica.ViewModel"
+    x:DataType="viewmodel:InicioViewModel">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Nome do Grupo 1"/>
-            <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo1.Nome}"/>
-            <Label Text="Nome do Grupo 2"/>
-            <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo2.Nome}"/>
-            <Label Text="Nível"/>
-            <Picker SelectedItem="{Binding Jogo.Nivel}">
+            <Label Text="Nome do Grupo 1" />
+            <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo1.Nome}" />
+            <Label Text="Nome do Grupo 2" />
+            <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo2.Nome}" />
+            <Label Text="Nível" />
+            <Picker SelectedIndex="{Binding Jogo.NivelNumerico}" SelectedItem="{Binding Jogo.Nivel}">
                 <Picker.Items>
                     <x:String>Aleatório</x:String>
                     <x:String>Fácil</x:String>
@@ -19,12 +20,15 @@
                     <x:String>Difícil</x:String>
                 </Picker.Items>
             </Picker>
-            <Label Text="Tempo de cada palavra(seg)"/>
-            <Entry Text="{Binding Jogo.TempoPalavra}"/>
-            <Label Text="Rodadas"/>
-            <Entry Text="{Binding Jogo.Rodadas}"/>
+            <Label Text="Tempo de cada palavra(seg)" />
+            <Entry Text="{Binding Jogo.TempoPalavra}" />
+            <Label Text="Rodadas" />
+            <Entry Text="{Binding Jogo.Rodadas}" />
 
-            <Button Text="Iniciar" Clicked="BtnIniciar_Clicado" Command="{Binding Comando_Iniciar_Jogo}"/>
+            <Button
+                Clicked="BtnIniciar_Clicado"
+                Command="{Binding Comando_Iniciar_Jogo}"
+                Text="Iniciar" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
