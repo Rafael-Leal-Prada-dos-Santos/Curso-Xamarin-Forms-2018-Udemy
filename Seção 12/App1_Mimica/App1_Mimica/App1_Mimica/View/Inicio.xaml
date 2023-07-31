@@ -7,6 +7,7 @@
     x:DataType="viewmodel:InicioViewModel">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="{Binding MsgErro}" TextColor="Red"></Label>
             <Label Text="Nome do Grupo 1" />
             <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo1.Nome}" />
             <Label Text="Nome do Grupo 2" />

@@ -213,8 +213,11 @@ namespace App1_Mimica.ViewModel
             {
                 App.Current.MainPage = new View.Resultado();
             }
-
-            App.Current.MainPage = new View.Jogo(grupo);
+            else
+            {
+                App.Current.MainPage = new View.Jogo(grupo);
+            }
+           
         }
     }
 }
