@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodel="clr-namespace:App1_Mimica.ViewModel" 
              xmlns:util="clr-namespace:App1_Mimica.Util"
+             xmlns:cab="clr-namespace:App1_Mimica.Util"
              x:Class="App1_Mimica.View.Jogo"
              x:DataType="viewmodel:JogoViewModel">
 
@@ -12,9 +13,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Spacing="0">
+            <cab:Cabecalho/>
+            <StackLayout Style="{StaticResource Container}">
+                
             <StackLayout>
-                <Label Text="{Binding NomeGrupo}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding NumeroGrupo}"/>
+                    <Label Text="{Binding NomeGrupo}"/>
+                </StackLayout>
+                
                 <Label Text="{Binding PalavraPontuacao, Converter={StaticResource convPontuacao}}"/>
                 <Label Text="{Binding Palavra}" HorizontalOptions="CenterAndExpand"/>
                 <Button Text="Mostrar" IsVisible="{Binding BtnMostrarVisivel}" Command="{Binding MostrarPalavra}"/>
@@ -31,6 +39,7 @@
             <StackLayout>
                 <Button Text="Iniciar" IsVisible="{Binding ConteinerIniciarVisivel}" Command="{Binding Iniciar}"/>
             </StackLayout>
+        </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

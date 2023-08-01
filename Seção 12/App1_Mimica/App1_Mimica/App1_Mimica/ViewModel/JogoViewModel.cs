@@ -10,6 +10,7 @@ namespace App1_Mimica.ViewModel
     {
         public Grupo Grupo { get; set; }
         public string NomeGrupo { get; set; }
+        public string NumeroGrupo { get; set; }
 
         private string _palavra;
         public string Palavra 
@@ -95,6 +96,15 @@ namespace App1_Mimica.ViewModel
         {
             this.Grupo = grupo;
             NomeGrupo = grupo.Nome;
+
+            if (grupo == Armazenamento.Armazenamento.Jogo.Grupo1)
+            {
+                NumeroGrupo = "Grupo 1";
+            }
+            else 
+            {
+                NumeroGrupo = "Grupo 2";
+            }
 
             ConteinerContagemVisivel = false;
             ConteinerIniciarVisivel = false;
