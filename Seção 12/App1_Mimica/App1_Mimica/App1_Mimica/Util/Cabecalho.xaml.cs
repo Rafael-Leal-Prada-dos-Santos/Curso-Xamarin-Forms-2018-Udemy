@@ -15,6 +15,18 @@ namespace App1_Mimica.Util
         public Cabecalho()
         {
             InitializeComponent();
+
+            BindingContext = new ViewModel.CabecalhoViewModel();
         }
+
+        public void SairEvento(object sender, EventArgs e) 
+        {
+            var viewmodel = (ViewModel.CabecalhoViewModel)this.BindingContext;
+            if (viewmodel.Comando_Sair.CanExecute(null)) 
+            {
+                viewmodel.Comando_Sair.Execute(null);
+            }
+        }
+
     }
 }

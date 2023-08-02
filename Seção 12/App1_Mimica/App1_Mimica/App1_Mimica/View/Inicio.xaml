@@ -8,33 +8,35 @@
     x:DataType="viewmodel:InicioViewModel">
     
     <ContentPage.Content>
-        <StackLayout Spacing="0">
-            <cab:Cabecalho/>
-            <StackLayout Style="{StaticResource Container}">
-                <Label Text="{Binding MsgErro}" TextColor="Red"></Label>
-                <Label Text="Nome do Grupo 1" />
-                <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo1.Nome}" />
-                <Label Text="Nome do Grupo 2" />
-                <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo2.Nome}" />
-                <Label Text="Nível" />
-                <Picker SelectedIndex="{Binding Jogo.NivelNumerico}" SelectedItem="{Binding Jogo.Nivel}">
-                    <Picker.Items>
-                        <x:String>Aleatório</x:String>
-                        <x:String>Fácil</x:String>
-                        <x:String>Médio</x:String>
-                        <x:String>Difícil</x:String>
-                    </Picker.Items>
-                </Picker>
-                <Label Text="Tempo de cada palavra(seg)" />
-                <Entry Text="{Binding Jogo.TempoPalavra}" />
-                <Label Text="Rodadas" />
-                <Entry Text="{Binding Jogo.Rodadas}" />
+        <ScrollView>
+            <StackLayout Spacing="0">
+                <cab:Cabecalho />
+                <StackLayout Style="{StaticResource Container}">
+                    <Label Text="{Binding MsgErro}" TextColor="Red"></Label>
+                    <Label Text="Nome do Grupo 1" />
+                    <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo1.Nome}" />
+                    <Label Text="Nome do Grupo 2" />
+                    <Entry Placeholder="(Opcional)" Text="{Binding Jogo.Grupo2.Nome}" />
+                    <Label Text="Nível" />
+                    <Picker SelectedIndex="{Binding Jogo.NivelNumerico}" SelectedItem="{Binding Jogo.Nivel}">
+                        <Picker.Items>
+                            <x:String>Aleatório</x:String>
+                            <x:String>Fácil</x:String>
+                            <x:String>Médio</x:String>
+                            <x:String>Difícil</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="Tempo de cada palavra(seg)" />
+                    <Entry Text="{Binding Jogo.TempoPalavra}" />
+                    <Label Text="Rodadas" />
+                    <Entry Text="{Binding Jogo.Rodadas}" />
 
-                <Button
-                Clicked="BtnIniciar_Clicado"
-                Command="{Binding Comando_Iniciar_Jogo}"
-                Text="Iniciar" />
+                    <Button
+                    Clicked="BtnIniciar_Clicado"
+                    Command="{Binding Comando_Iniciar_Jogo}"
+                    Text="Iniciar" />
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
