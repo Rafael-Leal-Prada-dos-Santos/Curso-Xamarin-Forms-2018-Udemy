@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace App1_NossoChat
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace App1_NossoChat.View
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PaginaInicial : ContentPage
     {
-        public MainPage()
+        public PaginaInicial()
         {
             InitializeComponent();
         }
