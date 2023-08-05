@@ -2,7 +2,8 @@
 <ContentPage
     x:Class="App1_NossoChat.View.PaginaInicial"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#5ED055">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="NossoChat" TextColor="White" />
@@ -10,13 +11,18 @@
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
                 <Entry Style="{StaticResource TextBoxUsuarioSenha}" Text="{Binding Nome}" />
-                <Entry Style="{StaticResource TextBoxUsuarioSenha}" Text="{Binding Senha}" />
+                <Entry
+                    IsPassword="True"
+                    Style="{StaticResource TextBoxUsuarioSenha}"
+                    Text="{Binding Senha}" />
 
                 <Button
                     BackgroundColor="Transparent"
+                    Command="{Binding Comando_EfetuarLogin}"
                     Text="Acessar/Cadastrar"
                     TextColor="White" />
 
+                <Label Text="{Binding MsgErro}" TextColor="White" />
             </StackLayout>
 
         </StackLayout>

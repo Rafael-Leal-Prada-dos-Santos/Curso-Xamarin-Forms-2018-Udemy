@@ -31,7 +31,8 @@ namespace App1_NossoChat.Service
 
             if (respostaHttp.IsSuccessStatusCode) 
             {
-                // TODO - DESSERIALIZAR, RETORNAR NO MÉTODO E SALVAR COMO LOGIN;
+                string json = respostaHttp.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                return JsonConvert.DeserializeObject<Usuario>(json);
             }
 
             return null;

@@ -1,12 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1_NossoChat.View.Mensagem">
+<ContentPage
+    x:Class="App1_NossoChat.View.Mensagem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <StackLayout>
+                    <Frame
+                        BorderColor="#5ED055"
+                        CornerRadius="0"
+                        HorizontalOptions="Start">
+                        <StackLayout>
+                            <Label Text="Felipe123" />
+                            <Label Text="Olá Amigos, tudo bem?" />
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout Padding="5" BackgroundColor="#5ED055">
+                        <Label Text="Ola Mundo" TextColor="White" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout Orientation="Horizontal">
+                <Frame BorderColor="#5ED055" CornerRadius="0">
+                    <Entry
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Digite sua mensagem"
+                        TextColor="#5ED055" />
+                </Frame>
+                <Button
+                    BackgroundColor="#5ED055"
+                    Text="Enviar"
+                    TextColor="White" />
+
+            </StackLayout>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
