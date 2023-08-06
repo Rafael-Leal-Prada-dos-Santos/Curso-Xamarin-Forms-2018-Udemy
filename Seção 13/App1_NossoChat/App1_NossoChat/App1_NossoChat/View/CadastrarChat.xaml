@@ -6,8 +6,17 @@
     BackgroundColor="#5ED055">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Nome do chat" Style="{StaticResource TextBoxUsuarioSenha}" />
-            <Button Text="Cadastrar" />
+            <Entry
+                Placeholder="Nome do chat"
+                Style="{StaticResource TextBoxUsuarioSenha}"
+                Text="{Binding nome}" />
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding Comando_Cadastrar}"
+                Text="Cadastrar"
+                TextColor="White" />
+
+            <Label Text="{Binding Mensagem}" TextColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

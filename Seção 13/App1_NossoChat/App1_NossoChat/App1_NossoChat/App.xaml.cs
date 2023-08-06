@@ -10,7 +10,7 @@ namespace App1_NossoChat
         {
             InitializeComponent();
 
-            MainPage = new View.PaginaInicial();
+            MainPage = new NavigationPage(new View.Mensagem(new Model.Chat())) { BarBackgroundColor = Color.FromHex("5ED055"), BarTextColor = Color.White};
         }
 
         protected override void OnStart()

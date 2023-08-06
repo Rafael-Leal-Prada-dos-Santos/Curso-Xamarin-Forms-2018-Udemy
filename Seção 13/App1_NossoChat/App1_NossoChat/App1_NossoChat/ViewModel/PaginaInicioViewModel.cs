@@ -1,5 +1,6 @@
 ﻿using App1_NossoChat.Model;
 using App1_NossoChat.Service;
+using App1_NossoChat.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace App1_NossoChat.ViewModel
             }
             else 
             {
-                App.Current.Properties["LOGIN"] = JsonConvert.SerializeObject(usuarioLogado);
+                UsuarioUtil.DefinirUsuarioLogado(usuarioLogado);
                 Comando_NavegarParaPaginaChats.Execute(null);
             }
         }

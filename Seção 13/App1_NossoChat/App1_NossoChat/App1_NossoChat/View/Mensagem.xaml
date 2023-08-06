@@ -2,9 +2,11 @@
 <ContentPage
     x:Class="App1_NossoChat.View.Mensagem"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="NossoChat">
+    <ContentPage.ToolbarItems />
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="slConteinerMensagem">
             <ScrollView>
                 <StackLayout>
                     <Frame
@@ -16,22 +18,27 @@
                             <Label Text="Olá Amigos, tudo bem?" />
                         </StackLayout>
                     </Frame>
-                    <StackLayout Padding="5" BackgroundColor="#5ED055">
+                    <StackLayout
+                        Padding="5"
+                        BackgroundColor="#5ED055"
+                        HorizontalOptions="End">
                         <Label Text="Ola Mundo" TextColor="White" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
 
             <StackLayout Orientation="Horizontal">
-                <Frame BorderColor="#5ED055" CornerRadius="0">
-                    <Entry
-                        BackgroundColor="White"
-                        HorizontalOptions="FillAndExpand"
-                        Placeholder="Digite sua mensagem"
-                        TextColor="#5ED055" />
-                </Frame>
+
+                <Entry
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Digite sua mensagem"
+                    Text="{Binding TextoMensagem}"
+                    TextColor="#5ED055" />
+
                 <Button
                     BackgroundColor="#5ED055"
+                    Command="{Binding Comando_Enviar}"
                     Text="Enviar"
                     TextColor="White" />
 
