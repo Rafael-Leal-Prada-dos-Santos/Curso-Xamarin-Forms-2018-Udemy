@@ -10,6 +10,7 @@ namespace App1_Mimica.ViewModel
     {
         public Grupo Grupo { get; set; }
         public string NomeGrupo { get; set; }
+        public string NumeroGrupo { get; set; }
 
         private string _palavra;
         public string Palavra 
@@ -56,14 +57,14 @@ namespace App1_Mimica.ViewModel
             }
         }
 
-        private bool _conteinerIniciarVisivel { get; set; }
-        public bool ConteinerIniciarVisivel 
+        private bool _botaoIniciarVisivel { get; set; }
+        public bool BotaoIniciarVisivel 
         {
-            get => _conteinerIniciarVisivel;
+            get => _botaoIniciarVisivel;
             set 
             {
-                _conteinerIniciarVisivel = value;
-                PropriedadeMudada("ConteinerIniciarVisivel");
+                _botaoIniciarVisivel = value;
+                PropriedadeMudada("BotaoIniciarVisivel");
             }
         }
 
@@ -96,8 +97,17 @@ namespace App1_Mimica.ViewModel
             this.Grupo = grupo;
             NomeGrupo = grupo.Nome;
 
+            if (grupo == Armazenamento.Armazenamento.Jogo.Grupo1)
+            {
+                NumeroGrupo = "Grupo 1";
+            }
+            else 
+            {
+                NumeroGrupo = "Grupo 2";
+            }
+
             ConteinerContagemVisivel = false;
-            ConteinerIniciarVisivel = false;
+            BotaoIniciarVisivel = false;
             BtnMostrarVisivel = true;
 
             Palavra = "************";
@@ -120,7 +130,7 @@ namespace App1_Mimica.ViewModel
             {
                 //Aleatório
                 Random rd = new Random();
-                int nivelAleatorio = rd.Next(0, 2);
+                int nivelAleatorio = rd.Next(0, 3);
 
                 int indice = rd.Next(0, Armazenamento.Armazenamento.Palavras[nivelAleatorio].Length);
                 Palavra = Armazenamento.Armazenamento.Palavras[nivelAleatorio][indice];
@@ -157,17 +167,20 @@ namespace App1_Mimica.ViewModel
 
 
             BtnMostrarVisivel = false;
-            ConteinerIniciarVisivel = true;
+            BotaoIniciarVisivel = true;
         }
 
 
 
         private void IniciarJogo()
         {
-            ConteinerIniciarVisivel = false;
+            BotaoIniciarVisivel = false;
             ConteinerContagemVisivel = true;
 
             int i = Armazenamento.Armazenamento.Jogo.TempoPalavra;
+
+            TextoContagem = i.ToString();
+            i--;
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 TextoContagem = i.ToString();
