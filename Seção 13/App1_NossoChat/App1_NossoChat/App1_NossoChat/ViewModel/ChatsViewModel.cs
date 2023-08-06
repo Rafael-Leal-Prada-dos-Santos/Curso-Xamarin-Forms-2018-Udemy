@@ -4,6 +4,7 @@ using App1_NossoChat.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace App1_NossoChat.ViewModel
@@ -34,7 +35,28 @@ namespace App1_NossoChat.ViewModel
 
         public ChatsViewModel()
         {
-            Chats = ServicoWS.ObterListaDeConversas();
+            Task.Run(()=>  CarregarChats());
+        }
+
+        public async Task CarregarChats() 
+        {
+            Carregando = true;
+
+            try
+            {
+                ExibeMensagemErro = false;
+                Chats = await ServicoWS.ObterListaDeConversas();
+            }
+            catch (Exception ex)
+            {
+                ExibeMensagemErro = true;
+            }
+            finally
+            {
+                Carregando = false;
+            }
+
+            
         }
     }
 }

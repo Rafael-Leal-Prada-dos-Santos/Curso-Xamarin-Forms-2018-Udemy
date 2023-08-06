@@ -14,6 +14,7 @@ namespace App1_NossoChat.ViewModel
         private string _nome;
         private string _senha;
         private string _mensagem;
+        
 
         public string Nome 
         { 
@@ -42,25 +43,43 @@ namespace App1_NossoChat.ViewModel
             Comando_EfetuarLogin = new Command(Acessar);
         }
 
-        private void Acessar() 
+        private async void Acessar() 
         {
-            Usuario usuario = new Usuario()
-            {
-                nome = Nome,
-                password = Senha
-            };
+            Carregando = true;
 
-            Usuario usuarioLogado = ServicoWS.ObterUsuario(usuario);
+            try
+            {
+                ExibeMensagemErro = false;
 
-            if (usuarioLogado == null)
-            {
-                MsgErro = "Senha incorreta";
+                Usuario usuario = new Usuario()
+                {
+                    nome = Nome,
+                    password = Senha
+                };
+
+                Usuario usuarioLogado = await ServicoWS.ObterUsuario(usuario);
+
+                if (usuarioLogado == null)
+                {
+                    MsgErro = "Senha incorreta";
+                    Carregando = false;
+                }
+                else
+                {
+                    UsuarioUtil.DefinirUsuarioLogado(usuarioLogado);
+                    Comando_NavegarParaPaginaChats.Execute(null);
+                }
+
             }
-            else 
+            catch (Exception e)
             {
-                UsuarioUtil.DefinirUsuarioLogado(usuarioLogado);
-                Comando_NavegarParaPaginaChats.Execute(null);
+                ExibeMensagemErro = true;
             }
+            finally 
+            {
+                Carregando = false;
+            }
+            
         }
     }
 }

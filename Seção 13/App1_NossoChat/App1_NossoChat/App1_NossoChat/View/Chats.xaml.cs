@@ -110,30 +110,30 @@ namespace App1_NossoChat.View
             if (Device.RuntimePlatform == Device.iOS)
             {
                 // Ícone do Font Awesome para iOS
-                toolbarItem = new ToolbarItem("", "\uf021", () => { _viewModel.Chats = ServicoWS.ObterListaDeConversas(); });
+                toolbarItem = new ToolbarItem("", "\uf021", () => { AtualizarChats(); });
             }
             else if (Device.RuntimePlatform == Device.Android)
             {
                 // Ícone do Font Awesome para Android
-                toolbarItem = new ToolbarItem("", "\uf021", () => { _viewModel.Chats = ServicoWS.ObterListaDeConversas(); });
+                toolbarItem = new ToolbarItem("", "\uf021", () => { AtualizarChats(); });
             }
             else if (Device.RuntimePlatform == Device.UWP)
             {
                 // Ícone do Font Awesome para UWP
-                toolbarItem = new ToolbarItem("", "\uf021", () => { _viewModel.Chats = ServicoWS.ObterListaDeConversas(); });
+                toolbarItem = new ToolbarItem("", "\uf021", () => { AtualizarChats(); });
             }
             else
             {
                 // Fallback, caso a plataforma não seja reconhecida
-                toolbarItem = new ToolbarItem("", "icone_padrao.png", () => { _viewModel.Chats = ServicoWS.ObterListaDeConversas(); });
+                toolbarItem = new ToolbarItem("", "icone_padrao.png", () => { AtualizarChats(); });
             }
 
             ToolbarItems.Add(toolbarItem);
         }
 
-        public void AtualizarPagina() 
+        public void AtualizarChats() 
         {
-            _viewModel.Chats = ServicoWS.ObterListaDeConversas();
+            Task.Run(() => _viewModel.CarregarChats()); 
         }
     }
 

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using App1_NossoChat.Model;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace App1_NossoChat.Service
 {
@@ -12,7 +13,7 @@ namespace App1_NossoChat.Service
     {
         private static string EnderecoBase = $"http://ws.spacedu.com.br/xf2018/rest/api";
 
-        public static Usuario ObterUsuario(Usuario usuario) 
+        public static async Task<Usuario> ObterUsuario(Usuario usuario) 
         {
             var endereco = $"{EnderecoBase}/usuario";
 
@@ -27,7 +28,9 @@ namespace App1_NossoChat.Service
 
             // PostAsync(url, parametros);
 
-            HttpResponseMessage respostaHttp =  clienteHttp.PostAsync(endereco , parametros).GetAwaiter().GetResult();
+            //HttpResponseMessage respostaHttp =  clienteHttp.PostAsync(endereco , parametros).GetAwaiter().GetResult();
+
+            HttpResponseMessage respostaHttp = await clienteHttp.PostAsync(endereco, parametros);
 
             if (respostaHttp.IsSuccessStatusCode) 
             {
@@ -38,7 +41,7 @@ namespace App1_NossoChat.Service
             return null;
         }
 
-        public static List<Chat> ObterListaDeConversas()
+        public static async Task<List<Chat>> ObterListaDeConversas()
         {
             var endereco = $"{EnderecoBase}/chats";
 
@@ -46,21 +49,29 @@ namespace App1_NossoChat.Service
 
             // PostAsync(url, parametros);
 
-            HttpResponseMessage respostaHttp = clienteHttp.GetAsync(endereco).GetAwaiter().GetResult();
+            HttpResponseMessage respostaHttp = 
+                await clienteHttp.GetAsync(endereco);
 
             if (respostaHttp.IsSuccessStatusCode)
             {
                 string conteudo = respostaHttp.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                if (conteudo.Length > 2) 
+                if (conteudo.Length > 2)
                 {
                     return JsonConvert.DeserializeObject<List<Chat>>(conteudo);
                 }
+                else
+                {
+                    return null;
+                }
             }
-
+            else 
+            {
+                throw new Exception("Código de erro HTTP" + respostaHttp.StatusCode)
+            }
             return null;
         }
 
-        public static bool CriarChat(Chat chat)
+        public static async Task<bool> CriarChat(Chat chat)
         {
             var endereco = $"{EnderecoBase}/chat";
 
@@ -70,7 +81,7 @@ namespace App1_NossoChat.Service
                  new KeyValuePair<string,string>("nome",chat.nome),
             });
 
-            HttpResponseMessage respostaHttp = clienteHttp.PostAsync(endereco, conteudoDoCorpo).GetAwaiter().GetResult();
+            HttpResponseMessage respostaHttp = await clienteHttp.PostAsync(endereco, conteudoDoCorpo);
 
             if (respostaHttp.IsSuccessStatusCode)
             {
@@ -116,7 +127,7 @@ namespace App1_NossoChat.Service
             return false;
         }
 
-        public static List<Mensagem> ObterMensagensChat(Chat chat)
+        public static async Task<List<Mensagem>> ObterMensagensChat(Chat chat)
         {
             var endereco = $"{EnderecoBase}/chat/{chat.id}/msg";
 
@@ -126,11 +137,18 @@ namespace App1_NossoChat.Service
 
             if (respostaHttp.IsSuccessStatusCode)
             {
-                string conteudo = respostaHttp.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                string conteudo = await respostaHttp.Content.ReadAsStringAsync();
 
-                if (conteudo.Length > 2)
+                if (conteudo != null) 
                 {
-                    return JsonConvert.DeserializeObject<List<Mensagem>>(conteudo);
+                    if (conteudo.Length > 2)
+                    {
+                        return JsonConvert.DeserializeObject<List<Mensagem>>(conteudo);
+                    }
+                    else 
+                    {
+                        return null;
+                    }
                 }
             }
 
@@ -154,9 +172,16 @@ namespace App1_NossoChat.Service
             {
                 string conteudo = respostaHttp.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-                if (conteudo.Length > 2)
+                if (conteudo != null)
                 {
-                    return JsonConvert.DeserializeObject<List<Mensagem>>(conteudo);
+                    if (conteudo.Length > 2)
+                    {
+                        return JsonConvert.DeserializeObject<List<Mensagem>>(conteudo);
+                    }
+                    else 
+                    {
+                        return null;
+                    }
                 }
             }
 

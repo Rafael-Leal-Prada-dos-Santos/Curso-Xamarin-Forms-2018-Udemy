@@ -8,6 +8,27 @@ namespace App1_NossoChat.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        private bool _carregando;
+        private bool _exibeMensagemErro;
+
+        public bool Carregando 
+        {
+            get => _carregando;
+            set => DefiniorValorPropriedade(ref _carregando, value);
+        }
+
+        public bool ExibeMensagemErro
+        {
+            get => _exibeMensagemErro;
+            set => DefiniorValorPropriedade(ref _exibeMensagemErro, value);
+        }
+
+        public ViewModelBase()
+        {
+            _carregando = false;
+            _exibeMensagemErro = false;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void AtualizarPropriedade(string propriedade) 

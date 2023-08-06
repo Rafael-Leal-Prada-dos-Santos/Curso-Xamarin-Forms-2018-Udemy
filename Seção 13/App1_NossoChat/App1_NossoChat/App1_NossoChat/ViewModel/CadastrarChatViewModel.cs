@@ -3,6 +3,7 @@ using App1_NossoChat.Service;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace App1_NossoChat.ViewModel
@@ -28,22 +29,34 @@ namespace App1_NossoChat.ViewModel
 
         public CadastrarChatViewModel() 
         {
-            Comando_Cadastrar = new Command(Cadastrar);
+            Comando_Cadastrar = new Command(async() => await Cadastrar());
         }
 
-        private void Cadastrar() 
+        private async Task Cadastrar() 
         {
-            Chat novoChat = new Chat() { nome = _nome };
+            Carregando = true;
 
-            bool resultado = ServicoWS.CriarChat(novoChat);
-
-            if (resultado)
+            try
             {
-                Comando_Voltar.Execute(null);
+                Chat novoChat = new Chat() { nome = _nome };
+
+                bool resultado = await ServicoWS.CriarChat(novoChat);
+
+                if (resultado)
+                {
+                    Carregando = false;
+                    Comando_Voltar.Execute(null);
+                }
+                else
+                {
+                    Carregando = false;
+                    _mensagem = "Ocorreu um erro no cadastro!";
+                }
+
             }
-            else 
+            catch (Exception ex) 
             {
-                _mensagem = "Ocorreu um erro no cadastro!";
+                Carregando = false;
             }
         }
     }

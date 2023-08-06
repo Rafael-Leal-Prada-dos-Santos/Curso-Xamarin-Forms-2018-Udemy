@@ -28,8 +28,8 @@ namespace App1_NossoChat.View
 
             _viewModel = new MensagemViewModel(chat);
 
-            _viewModel.Comando_ExibirMensagensCarregadasNaConversa =
-                new Command(ExibirMensagensCarregadas);
+            //_viewModel.Comando_ExibirMensagensCarregadasNaConversa =
+            //    new Command(ExibirMensagensCarregadas);
 
             BindingContext = _viewModel;
 
@@ -37,47 +37,67 @@ namespace App1_NossoChat.View
             IncluirToolbarItemRecarregar();
         }
 
-        private void ExibirMensagensCarregadas() 
-        {
-            Usuario usuario = UsuarioUtil.ObterUsuarioLogado();
+        //private void ExibirMensagensCarregadas()
+        //{
+        //    Usuario usuario = UsuarioUtil.ObterUsuarioLogado();
 
-            slConteinerMensagem.Children.Clear();
+        //    slConteinerMensagem.Children.Clear();
 
-            foreach (MensagemModel msg in _viewModel.Mensagens) 
-            {
-                if (msg.usuario.id == usuario.id)
-                {
-                    slConteinerMensagem.Children.Add(CriarLayoutMensagemUsuario(msg));
-                }
-                else
-                {
-                    slConteinerMensagem.Children.Add(CriarLayoutMensagemOutrosUsuarios(msg));
-                }
-            }
-        }
+        //    foreach (MensagemModel msg in _viewModel.Mensagens)
+        //    {
+        //        if (msg.usuario.id == usuario.id)
+        //        {
+        //            slConteinerMensagem.Children.Add(CriarLayoutMensagemUsuario(msg));
+        //        }
+        //        else
+        //        {
+        //            slConteinerMensagem.Children.Add(CriarLayoutMensagemOutrosUsuarios(msg));
+        //        }
+        //    }
+        //}
 
-        private Xamarin.Forms.View CriarLayoutMensagemUsuario(MensagemModel mensagem)
-        {
-            StackLayout sl = new StackLayout() { Padding = 5, BackgroundColor = Color.FromHex("#5ED055"), HorizontalOptions = LayoutOptions.End };
-            var label = new Label() { TextColor = Color.White, Text = mensagem.mensagem };
 
-            sl.Children.Add(label);
-            return sl;
+        //private void ExibirMensagensCarregadas() 
+        //{
+        //    Usuario usuario = UsuarioUtil.ObterUsuarioLogado();
 
-        }
-        private Xamarin.Forms.View CriarLayoutMensagemOutrosUsuarios(MensagemModel mensagem)
-        {
-            Label labelNome = new Label() { Text = mensagem.usuario.nome, FontSize = 10, TextColor = Color.FromHex("#5ED055") };
-            Label labelMensagem = new Label() { Text = mensagem.mensagem, TextColor = Color.FromHex("#5ED055") };
+        //    slConteinerMensagem.Children.Clear();
 
-            StackLayout SL = new StackLayout();
-            SL.Children.Add(labelNome);
-            SL.Children.Add(labelMensagem);
-            Frame frame = new Frame() { BorderColor = Color.FromHex("#5ED055"), CornerRadius = 0, HorizontalOptions = LayoutOptions.Start };
-            frame.Content = SL;
+        //    foreach (MensagemModel msg in _viewModel.Mensagens) 
+        //    {
+        //        if (msg.usuario.id == usuario.id)
+        //        {
+        //            slConteinerMensagem.Children.Add(CriarLayoutMensagemUsuario(msg));
+        //        }
+        //        else
+        //        {
+        //            slConteinerMensagem.Children.Add(CriarLayoutMensagemOutrosUsuarios(msg));
+        //        }
+        //    }
+        //}
 
-            return frame;
-        }
+        //private Xamarin.Forms.View CriarLayoutMensagemUsuario(MensagemModel mensagem)
+        //{
+        //    StackLayout sl = new StackLayout() { Padding = 5, BackgroundColor = Color.FromHex("#5ED055"), HorizontalOptions = LayoutOptions.End };
+        //    var label = new Label() { TextColor = Color.White, Text = mensagem.mensagem };
+
+        //    sl.Children.Add(label);
+        //    return sl;
+
+        //}
+        //private Xamarin.Forms.View CriarLayoutMensagemOutrosUsuarios(MensagemModel mensagem)
+        //{
+        //    Label labelNome = new Label() { Text = mensagem.usuario.nome, FontSize = 10, TextColor = Color.FromHex("#5ED055") };
+        //    Label labelMensagem = new Label() { Text = mensagem.mensagem, TextColor = Color.FromHex("#5ED055") };
+
+        //    StackLayout SL = new StackLayout();
+        //    SL.Children.Add(labelNome);
+        //    SL.Children.Add(labelMensagem);
+        //    Frame frame = new Frame() { BorderColor = Color.FromHex("#5ED055"), CornerRadius = 0, HorizontalOptions = LayoutOptions.Start };
+        //    frame.Content = SL;
+
+        //    return frame;
+        //}
 
         private void EnviarMensagem() 
         {
@@ -128,31 +148,31 @@ namespace App1_NossoChat.View
             if (Device.RuntimePlatform == Device.iOS)
             {
                 // Ícone do Font Awesome para iOS
-                toolbarItem = new ToolbarItem("", "\uf021", () => { Atualizar(); });
+                toolbarItem = new ToolbarItem("", "\uf021", () => { AtualizarMensagens(); });
             }
             else if (Device.RuntimePlatform == Device.Android)
             {
                 // Ícone do Font Awesome para Android
-                toolbarItem = new ToolbarItem("", "\uf021", () => { Atualizar(); });
+                toolbarItem = new ToolbarItem("", "\uf021", () => { AtualizarMensagens(); });
             }
             else if (Device.RuntimePlatform == Device.UWP)
             {
                 // Ícone do Font Awesome para UWP
-                toolbarItem = new ToolbarItem("", "\uf021", () => { Atualizar(); });
+                toolbarItem = new ToolbarItem("", "\uf021", () => { AtualizarMensagens(); });
             }
             else
             {
                 // Fallback, caso a plataforma não seja reconhecida
-                toolbarItem = new ToolbarItem("", "icone_padrao.png", () => { Atualizar(); });
+                toolbarItem = new ToolbarItem("", "icone_padrao.png", () => { AtualizarMensagens(); });
             }
 
             ToolbarItems.Add(toolbarItem);
         }
 
-
-        private void Atualizar() 
+        public void AtualizarMensagens()
         {
-            _viewModel.Mensagens = ServicoWS.ObterMensagensChat(_chatAtual);
+            Task.Run(() => _viewModel.CarregarMensagens());
         }
+
     }
 }

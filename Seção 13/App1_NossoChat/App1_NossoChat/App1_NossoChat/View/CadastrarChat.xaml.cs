@@ -29,7 +29,7 @@ namespace App1_NossoChat.View
         {
             Navigation.PopAsync();
 
-            ((Chats)((NavigationPage)App.Current.MainPage).RootPage).AtualizarPagina();
+            ((Chats)((NavigationPage)App.Current.MainPage).RootPage).AtualizarChats();
         }
     }
 }
